@@ -35,7 +35,7 @@ export default function Home() {
               id="1"
               image="/assets/img/toboga.jpeg"
               title="Tobogã"
-              description="Prepare-se para muita adrenalina e diversão! Nosso Tobogã inflável é a atração perfeita para transformar qualquer festa em um evento inesquecível. As crianças vão adorar escorregar e repetir a aventura quantas vezes quiserem, enquanto os adultos se divertem vendo a energia contagiante. Seguro, colorido e gigante, o Tobogã garante risadas e momentos marcantes que ninguém vai esquecer."
+              description="é a atração perfeita para festas, eventos e comemorações. Transforme qualquer ocasião em uma aventura inesquecível!"
               price={999.0}
               onRent={handleRent}
             />
@@ -44,7 +44,7 @@ export default function Home() {
               id="2"
               image="/assets/img/fdesabao.jpeg"
               title="Futebol De Sabão"
-              description="Diversão garantida e muitas risadas! O Futebol de Sabão é a atração perfeita para quem quer transformar a festa em um verdadeiro espetáculo de alegria. Imagine jogar futebol em um campo inflável cheio de espuma e sabão: escorregões, dribles engraçados e gols inesperados tornam cada partida única. Seguro, refrescante e irresistível, o Futebol de Sabão é ideal para animar crianças, jovens e adultos que adoram se divertir juntos."
+              description="Transforme sua festa em um verdadeiro parque de diversões com o combo Futebol de Sabão, garante momentos inesquecíveis"
               price={999.0}
               onRent={handleRent}
             />
@@ -52,7 +52,7 @@ export default function Home() {
               id="3"
               image="/assets/img/toboga-desabao.png"
               title="Futebol De Sabão + Tobogã"
-              description="Diversão garantida e muitas risadas! O Futebol de Sabão é a atração perfeita para quem quer transformar a festa em um verdadeiro espetáculo de alegria. Imagine jogar futebol em um campo inflável cheio de espuma e sabão: escorregões, dribles engraçados e gols inesperados tornam cada partida única. Seguro, refrescante e irresistível, o Futebol de Sabão é ideal para animar crianças, jovens e adultos que adoram se divertir juntos."
+              description="Diversão escorregadia e competição animada no campo, seguidas de muita adrenalina na descida do tobogã um combo perfeito!"
               price={999.0}
               onRent={handleRent}
             />
