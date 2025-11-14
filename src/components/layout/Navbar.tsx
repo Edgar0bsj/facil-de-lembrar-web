@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-
+import { useRouter } from "next/navigation";
 /**
  * ============================================
  * TYPES
@@ -20,6 +20,7 @@ type ReactProps = React.FC<NavbarProps>;
 function useNavbar(logo = "Logo") {
   // hook State
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   // hook Effect
   useEffect(() => {
@@ -39,8 +40,14 @@ function useNavbar(logo = "Logo") {
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
+  const handleReserva = () => {
+    const message = "Olá! Quero reservar um brinquedo!";
+    router.push(
+      `https://wa.me/5521968968795?text=${encodeURIComponent(message)}`
+    );
+  };
 
-  return { isMenuOpen, setIsMenuOpen, handleLinkClick };
+  return { isMenuOpen, setIsMenuOpen, handleLinkClick, handleReserva };
 }
 
 /**
@@ -50,7 +57,8 @@ function useNavbar(logo = "Logo") {
  */
 
 const Navbar: ReactProps = ({ logo = "Logo" }) => {
-  const { isMenuOpen, setIsMenuOpen, handleLinkClick } = useNavbar(logo);
+  const { isMenuOpen, setIsMenuOpen, handleLinkClick, handleReserva } =
+    useNavbar(logo);
 
   return (
     <>
@@ -68,42 +76,32 @@ const Navbar: ReactProps = ({ logo = "Logo" }) => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="shrink-0">
-              <span className="text-2xl font-bold text-blue-900">{logo}</span>
+              <span className="text-2xl font-bold text-blue-900">
+                {""}
+                <img
+                  className="rounded-xl"
+                  src="/assets/img/logo.png"
+                  alt="..."
+                />
+              </span>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex lg:items-center lg:space-x-8">
-              <a
+              {/* <a
                 href="#inicio"
                 className="text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
                 onClick={handleLinkClick}
               >
                 Início
-              </a>
-              <a
-                href="#brinquedos"
-                className="text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                onClick={handleLinkClick}
-              >
-                Brinquedos
-              </a>
-              <a
-                href="#sobre"
-                className="text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                onClick={handleLinkClick}
-              >
-                Sobre
-              </a>
-              <a
-                href="#contato"
-                className="text-gray-700 hover:text-blue-900 px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-                onClick={handleLinkClick}
-              >
-                Contato
-              </a>
+              </a> */}
 
               {/* CTA Button */}
-              <button className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg">
+              <button
+                onClick={handleReserva}
+                type="button"
+                className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg"
+              >
                 Reservar Agora
               </button>
             </div>

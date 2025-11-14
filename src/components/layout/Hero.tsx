@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { useRef, useEffect } from "react";
 /**
@@ -20,6 +21,7 @@ interface HeroProps {
  */
 function useHero() {
   const bgRef = useRef(null);
+  const router = useRouter();
 
   useEffect(() => {
     gsap.to(bgRef.current, {
@@ -31,7 +33,15 @@ function useHero() {
     });
   }, []);
 
-  return { bgRef };
+  //handles
+  function handleBtnCatalogo() {
+    router.push("/catalogo");
+  }
+  function handleBtnQuemSomos() {
+    router.push("/QuemSomos");
+  }
+
+  return { bgRef, router, handleBtnCatalogo, handleBtnQuemSomos };
 }
 
 /**
@@ -45,7 +55,7 @@ export default function Hero({
   subtitle = "Alugue brinquedos incríveis e transforme sua festa em uma experiência memorável.",
   ctaText = "Explorar Brinquedos",
 }: HeroProps) {
-  const { bgRef } = useHero();
+  const { bgRef, router, handleBtnCatalogo, handleBtnQuemSomos } = useHero();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background with overlay */}
@@ -89,11 +99,19 @@ export default function Hero({
             className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up"
             style={{ animationDelay: "0.8s" }}
           >
-            <button className="w-full sm:w-auto bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
+            <button
+              type="button"
+              onClick={handleBtnCatalogo}
+              className="w-full sm:w-auto bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+            >
               {ctaText}
             </button>
 
-            <button className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
+            <button
+              type="button"
+              onClick={handleBtnQuemSomos}
+              className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50"
+            >
               Quem somos
             </button>
           </div>

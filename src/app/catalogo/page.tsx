@@ -1,30 +1,32 @@
 "use client";
+import { useRouter } from "next/navigation";
+import FeaturesSection from "@/components/features/FeaturesSection";
 import Footer from "@/components/layout/Footer";
-import Hero from "@/components/layout/Hero";
 import Navbar from "@/components/layout/Navbar";
-import ProductDetails from "@/components/product/ProductDetails";
-import { mockProduct } from "@/components/product/productMock/product";
 import ProductCard from "@/components/ProductCard";
-import TestimonialsList from "@/components/testimonials/TestimonialsList";
 
 export default function Home() {
+  const router = useRouter();
   const handleRent = (productId: string) => {
-    console.log(`Produto ${productId} alugado!`);
+    const message = "Olá! Quero reservar um brinquedo!";
+    router.push(
+      `https://wa.me/5521968968795?text=${encodeURIComponent(message)}`
+    );
   };
 
   return (
     <>
       <Navbar />
       {/* BRINQUEDOS */}
-      <section className="py-16 bg-gray-50">
+      <section className="pt-10 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Nossos Brinquedos
+              Escolha a diversão da sua festa!
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Conheça nossa seleção especial de brinquedos educativos e
-              divertidos
+              Descubra nossos brinquedos infláveis, como toboágua e futebol de
+              sabão, e torne seu evento inesquecível.
             </p>
           </div>
 
@@ -33,21 +35,31 @@ export default function Home() {
               id="1"
               image="/assets/img/toboga.jpeg"
               title="Tobogã"
-              description="Quebra-cabeça de madeira com números e letras, ajuda no aprendizado de forma divertida e interativa."
-              price={750.0}
+              description="Prepare-se para muita adrenalina e diversão! Nosso Tobogã inflável é a atração perfeita para transformar qualquer festa em um evento inesquecível. As crianças vão adorar escorregar e repetir a aventura quantas vezes quiserem, enquanto os adultos se divertem vendo a energia contagiante. Seguro, colorido e gigante, o Tobogã garante risadas e momentos marcantes que ninguém vai esquecer."
+              price={999.0}
               onRent={handleRent}
             />
 
             <ProductCard
-              id="4"
-              title="Kit de Arte e Pintura"
-              description="Kit completo com tintas atóxicas, pincéis e telas para despertar o artista interior da criança."
-              price={42.3}
+              id="2"
+              image="/assets/img/fdesabao.jpeg"
+              title="Futebol De Sabão"
+              description="Diversão garantida e muitas risadas! O Futebol de Sabão é a atração perfeita para quem quer transformar a festa em um verdadeiro espetáculo de alegria. Imagine jogar futebol em um campo inflável cheio de espuma e sabão: escorregões, dribles engraçados e gols inesperados tornam cada partida única. Seguro, refrescante e irresistível, o Futebol de Sabão é ideal para animar crianças, jovens e adultos que adoram se divertir juntos."
+              price={999.0}
+              onRent={handleRent}
+            />
+            <ProductCard
+              id="3"
+              image="/assets/img/toboga-desabao.png"
+              title="Futebol De Sabão + Tobogã"
+              description="Diversão garantida e muitas risadas! O Futebol de Sabão é a atração perfeita para quem quer transformar a festa em um verdadeiro espetáculo de alegria. Imagine jogar futebol em um campo inflável cheio de espuma e sabão: escorregões, dribles engraçados e gols inesperados tornam cada partida única. Seguro, refrescante e irresistível, o Futebol de Sabão é ideal para animar crianças, jovens e adultos que adoram se divertir juntos."
+              price={999.0}
               onRent={handleRent}
             />
           </div>
         </div>
       </section>
+      <FeaturesSection />
       {/* FOOTER */}
       <Footer />
     </>

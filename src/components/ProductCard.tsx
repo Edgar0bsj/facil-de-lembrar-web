@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* Hover Overlay */}
         {isHovered && available && (
           <div className="absolute inset-0 bg-blue-900 bg-opacity-20 flex items-center justify-center transition-opacity duration-300">
-            <div className="text-white text-lg font-semibold">Ver Detalhes</div>
+            <div className="text-white text-lg font-semibold">{title}</div>
           </div>
         )}
       </div>
@@ -96,14 +96,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <svg
                   key={star}
                   className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill={star <= 4 ? "#fbbf24" : "#e5e7eb"}
-                  viewBox="0 0 20 20"
+                  fill={star <= 5 ? "#fbbf24" : "#e5e7eb"}
+                  viewBox="0 0 30 30"
                 >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.95 1.902l-1.07 3.292a1 1 0 00-.95.69l-2.89 2.1a1 1 0 00-.95-.69l-2.89-2.1a1 1 0 00-.95.69l-1.07-3.292a1 1 0 00.95-.69H7.537c-.969 0-1.371-1.24-.95-1.902l1.07-3.292a1 1 0 00-.95-.69l2.89-2.1a1 1 0 00.95.69z" />
+                  <path d="M 13 0.1875 C 5.925781 0.1875 0.1875 5.925781 0.1875 13 C 0.1875 20.074219 5.925781 25.8125 13 25.8125 C 20.074219 25.8125 25.8125 20.074219 25.8125 13 C 25.8125 5.925781 20.074219 0.1875 13 0.1875 Z M 19.734375 9.035156 L 12.863281 19.167969 C 12.660156 19.46875 12.335938 19.671875 12.015625 19.671875 C 11.695313 19.671875 11.34375 19.496094 11.117188 19.273438 L 7.085938 15.238281 C 6.8125 14.964844 6.8125 14.515625 7.085938 14.242188 L 8.082031 13.246094 C 8.355469 12.972656 8.804688 12.972656 9.074219 13.246094 L 11.699219 15.867188 L 17.402344 7.453125 C 17.621094 7.132813 18.0625 7.050781 18.382813 7.265625 L 19.550781 8.058594 C 19.867188 8.273438 19.953125 8.714844 19.734375 9.035156 Z" />
                 </svg>
               ))}
               <span className="text-xs sm:text-sm text-gray-500 ml-1">
-                (4.5)
+                (5.0)
               </span>
             </div>
           </div>
@@ -114,7 +114,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               ✓ Seguro
             </span>
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-              ✓ Educativo
+              ✓ Adrenalina
             </span>
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
               ✓ Divertido
