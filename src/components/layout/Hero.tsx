@@ -1,34 +1,62 @@
 "use client";
 import Image from "next/image";
-import React from "react";
-import ScrollIndicator from "../scroll-Indicator/ScrollIndicator";
-
+import gsap from "gsap";
+import { useRef, useEffect } from "react";
+/**
+ * ============================================
+ * TYPES
+ * ============================================
+ */
 interface HeroProps {
   title?: string;
   subtitle?: string;
   ctaText?: string;
-  backgroundImage?: string;
 }
 
-const Hero: React.FC<HeroProps> = ({
-  title = "Descubra o Mundo Mágico dos Brinquedos",
-  subtitle = "Transforme a imaginação em aventura com nossos brinquedos educativos e divertidos",
+/**
+ * ============================================
+ * HOOKS
+ * ============================================
+ */
+function useHero() {
+  const bgRef = useRef(null);
+
+  useEffect(() => {
+    gsap.to(bgRef.current, {
+      scale: 1.2, // aumenta o zoom até 110%
+      duration: 5, // tempo do zoom
+      ease: "power1.inOut",
+      repeat: -1, // infinito
+      yoyo: true, // vai e volta
+    });
+  }, []);
+
+  return { bgRef };
+}
+
+/**
+ * ============================================
+ * RENDER
+ * ============================================
+ */
+
+export default function Hero({
+  title = "Diversão que ninguém esquece!",
+  subtitle = "Alugue brinquedos incríveis e transforme sua festa em uma experiência memorável.",
   ctaText = "Explorar Brinquedos",
-  backgroundImage,
-}) => {
+}: HeroProps) {
+  const { bgRef } = useHero();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background with overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: backgroundImage
-            ? `url(${backgroundImage})`
-            : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-40" />
-      </div>
+      <Image
+        ref={bgRef}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat object-cover object-center"
+        src={"/assets/logo.png"}
+        alt="..."
+        fill
+      />
+      <div className="absolute inset-0  bg-opacity-40 bg-black/50 z-0" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
@@ -36,10 +64,10 @@ const Hero: React.FC<HeroProps> = ({
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
             <span className="block animate-fade-in-down">
-              {title.split(" ").map((word, index) => (
+              {title.split(".").map((word, index) => (
                 <span
                   key={index}
-                  className="inline-block animate-fade-in-up"
+                  className="inline-block animate-fade-in-up font-bold"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {word}{" "}
@@ -66,56 +94,11 @@ const Hero: React.FC<HeroProps> = ({
             </button>
 
             <button className="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
-              Saiba Mais
+              Quem somos
             </button>
-          </div>
-
-          {/* Features */}
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 sm:mt-16 animate-fade-in-up"
-            style={{ animationDelay: "1s" }}
-          >
-            <div className="text-center">
-              <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 transform transition-all duration-300 hover:scale-105">
-                <div className="text-3xl mb-3">🎨</div>
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  Criativo
-                </h3>
-                <p className="text-gray-200 text-sm">
-                  Estimula a imaginação e criatividade
-                </p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 transform transition-all duration-300 hover:scale-105">
-                <div className="text-3xl mb-3">🧠</div>
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  Educativo
-                </h3>
-                <p className="text-gray-200 text-sm">
-                  Aprenda brincando de forma divertida
-                </p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-6 transform transition-all duration-300 hover:scale-105">
-                <div className="text-3xl mb-3">🛡️</div>
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  Seguro
-                </h3>
-                <p className="text-gray-200 text-sm">
-                  Materiais atóxicos e duráveis
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <ScrollIndicator />
 
       {/* Custom styles for animations */}
       <style jsx>{`
@@ -153,6 +136,4 @@ const Hero: React.FC<HeroProps> = ({
       `}</style>
     </section>
   );
-};
-
-export default Hero;
+}

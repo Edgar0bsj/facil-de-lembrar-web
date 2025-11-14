@@ -107,26 +107,6 @@ const TestimonialsList: React.FC = () => {
             </div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-12">
-          <div className="bg-blue-900 text-white rounded-2xl p-8 max-w-2xl mx-auto shadow-2xl">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-4">
-              Junte-se a Família ToyStore!
-            </h3>
-            <p className="text-lg mb-6 text-blue-100">
-              Mais de 500 famílias já confiam em nossos brinquedos educativos
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="w-full sm:w-auto bg-white text-blue-900 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900">
-                Ver Todos os Depoimentos
-              </button>
-              <button className="w-full sm:w-auto bg-blue-800 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900 shadow-lg">
-                Começar Agora
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Custom Animation Styles */}

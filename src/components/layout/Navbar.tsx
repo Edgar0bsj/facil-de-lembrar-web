@@ -10,22 +10,18 @@ interface NavbarProps {
   logo?: string;
 }
 
+type ReactProps = React.FC<NavbarProps>;
+
 /**
  * ============================================
  * HOOKS
  * ============================================
  */
-
-/**
- * ============================================
- * RENDER
- * ============================================
- */
-
-const Navbar: React.FC<NavbarProps> = ({ logo = "Logo" }) => {
+function useNavbar(logo = "Logo") {
+  // hook State
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Prevent body scroll when mobile menu is open
+  // hook Effect
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -38,10 +34,23 @@ const Navbar: React.FC<NavbarProps> = ({ logo = "Logo" }) => {
     };
   }, [isMenuOpen]);
 
+  //HANDLES
   // Close menu when clicking on a link
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
+
+  return { isMenuOpen, setIsMenuOpen, handleLinkClick };
+}
+
+/**
+ * ============================================
+ * RENDER
+ * ============================================
+ */
+
+const Navbar: ReactProps = ({ logo = "Logo" }) => {
+  const { isMenuOpen, setIsMenuOpen, handleLinkClick } = useNavbar(logo);
 
   return (
     <>

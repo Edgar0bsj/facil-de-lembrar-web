@@ -85,7 +85,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <div className="text-2xl sm:text-3xl font-bold text-blue-900">
                 R$ {price.toFixed(2)}
               </div>
-              <div className="text-xs sm:text-sm text-gray-500">por dia</div>
+              <div className="text-xs sm:text-sm text-gray-500">
+                por 5 Horas de festa
+              </div>
             </div>
 
             {/* Rating Stars */}
