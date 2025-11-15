@@ -4,7 +4,7 @@ import Hero from "@/components/layout/Hero";
 import Navbar from "@/components/layout/Navbar";
 import ProductDetails from "@/components/product/ProductDetails";
 import { mockProduct } from "@/components/product/productMock/product";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/productCard/ProductCard";
 import TestimonialsList from "@/components/testimonials/TestimonialsList";
 
 export default function Home() {

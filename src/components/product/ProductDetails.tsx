@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Product } from "./productMock/product";
 import ImageGallery from "./ImageGallery";
 import ProductInfo from "./ProductInfo";
-import ProductCard from "../ProductCard";
+import ProductCard from "../productCard/ProductCard";
 
 interface ProductDetailsProps {
   product: Product;
