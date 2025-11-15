@@ -1,4 +1,26 @@
+function useFeaturesSection() {
+  const features = [
+    {
+      title: "Qualidade",
+      subTitle:
+        "Brinquedos seguros e bem cuidados para garantir diversão sem preocupações",
+    },
+    {
+      title: "Preços Justos",
+      subTitle: "Diversão acessível para todos, sem abrir mão da excelência",
+    },
+    {
+      title: "Compromisso",
+      subTitle:
+        "Transparência e dedicação em cada detalhe, porque sua confiança é nossa prioridade.",
+    },
+  ];
+
+  return { features };
+}
+
 export default function FeaturesSection() {
+  const { features } = useFeaturesSection();
   return (
     <>
       <section className="mt-16 mb-1.5 bg-linear-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
@@ -18,12 +40,9 @@ export default function FeaturesSection() {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Qualidade
+              {features[0].title}
             </h3>
-            <p className="text-gray-600">
-              Brinquedos seguros e bem cuidados para garantir diversão sem
-              preocupações
-            </p>
+            <p className="text-gray-600">{features[0].subTitle}</p>
           </div>
 
           <div>
@@ -42,11 +61,9 @@ export default function FeaturesSection() {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Preços Justos
+              {features[1].title}
             </h3>
-            <p className="text-gray-600">
-              Diversão acessível para todos, sem abrir mão da excelência
-            </p>
+            <p className="text-gray-600">{features[1].subTitle}</p>
           </div>
 
           <div>
@@ -61,12 +78,9 @@ export default function FeaturesSection() {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Compromisso
+              {features[2].title}
             </h3>
-            <p className="text-gray-600">
-              Transparência e dedicação em cada detalhe, porque sua confiança é
-              nossa prioridade.
-            </p>
+            <p className="text-gray-600">{features[2].subTitle}</p>
           </div>
         </div>
       </section>
