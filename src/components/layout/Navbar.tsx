@@ -1,64 +1,74 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-/**
- * ============================================
- * TYPES
- * ============================================
- */
-interface NavbarProps {
-  logo?: string;
-}
+import { useState, useEffect } from "react";
 
-type ReactProps = React.FC<NavbarProps>;
+function useNavbar() {
+  /**
+   * ============================================
+   * MENU EFFECT
+   * ============================================
+   */
+  function handleMenuEffect() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    useEffect(() => {
+      if (isMenuOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "unset";
+      }
 
-/**
- * ============================================
- * HOOKS
- * ============================================
- */
-function useNavbar(logo = "Logo") {
-  // hook State
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
+      return () => {
+        document.body.style.overflow = "unset";
+      };
+    }, [isMenuOpen]);
 
-  // hook Effect
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
-
-  //HANDLES
-  // Close menu when clicking on a link
-  const handleLinkClick = () => {
+    return { isMenuOpen, setIsMenuOpen };
+  }
+  /**
+   * ============================================
+   * LINK CLICK
+   * ============================================
+   */
+  function handleLinkClick() {
+    const { setIsMenuOpen } = handleMenuEffect();
     setIsMenuOpen(false);
-  };
-  const handleReserva = () => {
-    const message = "Olá! Quero reservar um brinquedo!";
-    router.push(
-      `https://wa.me/5521968968795?text=${encodeURIComponent(message)}`
+  }
+  /**
+   * ============================================
+   * RESERVATION
+   * ============================================
+   */
+  function handleReservation() {
+    const msg = "Olá! Quero reservar um brinquedo!";
+    const whatsappNumber = "5521968968795";
+
+    window.open(
+      `https://wa.me/${encodeURIComponent(
+        whatsappNumber
+      )}?text=${encodeURIComponent(msg)}`,
+      "_blank"
     );
+  }
+  /**
+   * ============================================
+   * -------RETORNO-------
+   * ============================================
+   */
+  return {
+    utility: { handleLinkClick },
+    handle: { handleMenuEffect, handleReservation },
   };
-
-  return { isMenuOpen, setIsMenuOpen, handleLinkClick, handleReserva };
 }
-
 /**
  * ============================================
  * RENDER
  * ============================================
  */
 
-const Navbar: ReactProps = ({ logo = "Logo" }) => {
-  const { isMenuOpen, setIsMenuOpen, handleLinkClick, handleReserva } =
-    useNavbar(logo);
+export default function Navbar() {
+  const { utility, handle } = useNavbar();
+  const { handleLinkClick } = utility;
+  const { handleReservation } = handle;
+  const { isMenuOpen, setIsMenuOpen } = handle.handleMenuEffect();
 
   return (
     <>
@@ -98,7 +108,7 @@ const Navbar: ReactProps = ({ logo = "Logo" }) => {
 
               {/* CTA Button */}
               <button
-                onClick={handleReserva}
+                onClick={handleReservation}
                 type="button"
                 className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg"
               >
@@ -143,38 +153,21 @@ const Navbar: ReactProps = ({ logo = "Logo" }) => {
             }`}
           >
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
-              <a
+              {/* <a
                 href="#inicio"
                 className="text-gray-700 hover:text-blue-900 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:bg-gray-50"
                 onClick={handleLinkClick}
               >
                 Início
-              </a>
-              <a
-                href="#brinquedos"
-                className="text-gray-700 hover:text-blue-900 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:bg-gray-50"
-                onClick={handleLinkClick}
-              >
-                Brinquedos
-              </a>
-              <a
-                href="#sobre"
-                className="text-gray-700 hover:text-blue-900 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:bg-gray-50"
-                onClick={handleLinkClick}
-              >
-                Sobre
-              </a>
-              <a
-                href="#contato"
-                className="text-gray-700 hover:text-blue-900 hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 focus:outline-none focus:text-blue-900 focus:bg-gray-50"
-                onClick={handleLinkClick}
-              >
-                Contato
-              </a>
+              </a> */}
 
               {/* Mobile CTA Button */}
               <div className="pt-4 pb-2">
-                <button className="w-full bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg text-base font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg">
+                <button
+                  onClick={handleReservation}
+                  type="button"
+                  className="w-full bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg text-base font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg"
+                >
                   Reservar Agora
                 </button>
               </div>
@@ -184,6 +177,4 @@ const Navbar: ReactProps = ({ logo = "Logo" }) => {
       </nav>
     </>
   );
-};
-
-export default Navbar;
+}
